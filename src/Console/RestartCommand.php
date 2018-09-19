@@ -28,7 +28,7 @@ class RestartCommand extends Command
     {
         $repository = app(MasterSupervisorRepository::class);
         $masters    = $repository->all();
-        collect($masters)->each(function () {
+        collect($masters)->each(function ($master) {
             $queue = substr($master->name, 0, -5);
             HorizonRestartJob::dispatch()->onQueue($queue);
             $this->info("Restarting machine '{$queue}'");
