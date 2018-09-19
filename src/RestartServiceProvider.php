@@ -38,7 +38,7 @@ class RestartServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Huangdijia\Horizon\Console\RestartCommand::class,
+                Console\RestartCommand::class,
             ]);
         }
     }
