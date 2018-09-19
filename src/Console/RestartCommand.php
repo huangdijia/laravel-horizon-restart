@@ -3,6 +3,7 @@
 namespace Huangdijia\Horizon\Console;
 
 use Illuminate\Console\Command;
+use Huangdijia\Horizon\Jobs\HorizonRestartJob;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class RestartCommand extends Command
