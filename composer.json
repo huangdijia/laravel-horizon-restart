@@ -1,0 +1,38 @@
+{
+    "name": "huangdijia/laravel-horizon-restart",
+    "description": "horizon-restart for laravel",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "migrate",
+        "recreate"
+    ],
+    "homepage": "https://github.com/huangdijia/laravel-horizon-restart",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "huangdijia",
+            "email": "huangdijia@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/console": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "laravel/horizon": "^1.4"
+    },
+    "autoload": {
+        "files": [
+        ],
+        "psr-4": {
+            "Huangdijia\\Horizon\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Huangdijia\\Horizon\\RestartServiceProvider"
+            ]
+        }
+    }
+}
