@@ -1,6 +1,6 @@
 # laravel-horizon-restart
 
-Restart the Horizon supervisors of multiple servers
+Restart the Horizon supervisors of multiple servers like `php artisan queue:restart`
 
 ## Installation
 
