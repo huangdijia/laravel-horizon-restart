@@ -25,7 +25,7 @@ class RestartServiceProvider extends ServiceProvider
         $connection   = current($environments)['connection'] ?? 'redis';
         $queue        = MasterSupervisor::basename();
 
-        app('config')->set('horizon.environments.' . config('app.env') . 'supervisor-horizon-restart', [
+        app('config')->set('horizon.environments.' . config('app.env') . '.supervisor-horizon-restart', [
             'connection' => $connection,
             'queue'      => [$queue],
             'balance'    => 'simple',
