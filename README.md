@@ -1,5 +1,7 @@
 # laravel-horizon-restart
 
+Restart the Horizon supervisors of multiple servers
+
 ## Installation
 
 ~~~bash
