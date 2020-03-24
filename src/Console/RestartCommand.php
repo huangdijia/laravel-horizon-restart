@@ -2,8 +2,9 @@
 
 namespace Huangdijia\Horizon\Console;
 
-use Illuminate\Console\Command;
 use Huangdijia\Horizon\Jobs\HorizonRestartJob;
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class RestartCommand extends Command
@@ -27,12 +28,14 @@ class RestartCommand extends Command
      */
     public function handle()
     {
-        $repository = app(MasterSupervisorRepository::class);
+        $repository = $this->laravel->make(MasterSupervisorRepository::class);
         $masters    = $repository->all();
+
         collect($masters)->each(function ($master) {
-            $queue = substr($master->name, 0, -5);
+            $queue = Str::substr($master->name, 0, -5);
             HorizonRestartJob::dispatch()->onQueue($queue);
-            $this->info("Restarting machine '{$queue}'");
+
+            $this->info("Server [{$queue}] terminated");
         });
     }
 }

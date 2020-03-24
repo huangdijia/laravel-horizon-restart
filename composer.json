@@ -9,21 +9,19 @@
     ],
     "homepage": "https://github.com/huangdijia/laravel-horizon-restart",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "huangdijia",
-            "email": "huangdijia@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "huangdijia",
+        "email": "huangdijia@gmail.com"
+    }],
     "require": {
         "php": ">=7.1.0",
-        "illuminate/support": "^5.7|^5.8|^6.0|^7.0",
-        "illuminate/console": "^5.7|^5.8|^6.0|^7.0",
-        "laravel/horizon": "^1.0|^2.0|^3.0"
+        "illuminate/support": "^5.7|^5.8|^6.0|^7.0|^8.0",
+        "illuminate/console": "^5.7|^5.8|^6.0|^7.0|^8.0",
+        "illuminate/bus": "^5.7|^5.8|^6.0|^7.0|^8.0",
+        "laravel/horizon": "^1.0|^2.0|^3.0|^4.0"
     },
     "autoload": {
-        "files": [
-        ],
+        "files": [],
         "psr-4": {
             "Huangdijia\\Horizon\\": "src/"
         }

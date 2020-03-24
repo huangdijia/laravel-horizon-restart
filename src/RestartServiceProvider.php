@@ -11,21 +11,24 @@ class RestartServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->registerCommands();
+        }
     }
 
     public function register()
     {
         $this->configure();
-        $this->registerCommands();
     }
 
     protected function configure()
     {
-        $environments = config('horizon.environments.' . config('app.env'), []);
+        $env          = $this->app['config']['app.env'] ?? 'local';
+        $environments = $this->app['config']['horizon.environments.' . $env] ?? [];
         $connection   = current($environments)['connection'] ?? 'redis';
         $queue        = MasterSupervisor::basename();
 
-        app('config')->set('horizon.environments.' . config('app.env') . '.supervisor-horizon-restart', [
+        $this->app['config']->set('horizon.environments.' . $env . '.supervisor-horizon-restart', [
             'connection' => $connection,
             'queue'      => [$queue],
             'balance'    => 'simple',
