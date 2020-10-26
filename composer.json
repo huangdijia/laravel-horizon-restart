@@ -18,7 +18,7 @@
         "illuminate/support": "^5.7|^6.0|^7.0|^8.0",
         "illuminate/console": "^5.7|^6.0|^7.0|^8.0",
         "illuminate/bus": "^5.7|^6.0|^7.0|^8.0",
-        "laravel/horizon": "^1"
+        "laravel/horizon": "^1|^5.0"
     },
     "autoload": {
         "files": [],
