@@ -1,5 +1,6 @@
 # laravel-horizon-restart
 
+[![Latest Test](https://github.com/huangdijia/laravel-horizon-restart/workflows/tests/badge.svg)](https://github.com/huangdijia/laravel-horizon-restart/actions)
 [![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-horizon-restart/version.png)](https://packagist.org/packages/huangdijia/laravel-horizon-restart)
 [![Total Downloads](https://poser.pugx.org/huangdijia/laravel-horizon-restart/d/total.png)](https://packagist.org/packages/huangdijia/laravel-horizon-restart)
 
