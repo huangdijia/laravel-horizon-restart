@@ -15,10 +15,15 @@
     }],
     "require": {
         "php": ">=7.1.0",
-        "illuminate/support": "^5.7|^6.0|^7.0|^8.0",
-        "illuminate/console": "^5.7|^6.0|^7.0|^8.0",
-        "illuminate/bus": "^5.7|^6.0|^7.0|^8.0",
+        "illuminate/support": "^5.7|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/console": "^5.7|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/bus": "^5.7|^6.0|^7.0|^8.0|^9.0",
         "laravel/horizon": "^1|^5.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "laravel/framework": "^5.0|^6.0|^7.0|^8.0|^9.0",
+        "phpstan/phpstan": "^0.12|^1.0"
     },
     "autoload": {
         "files": [],
@@ -26,11 +31,16 @@
             "Huangdijia\\Horizon\\": "src/"
         }
     },
+    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
                 "Huangdijia\\Horizon\\RestartServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
+        "cs-fix": "php-cs-fixer fix $1"
     }
 }
