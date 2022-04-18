@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @contact  huangdijia@gmail.com
  */
 $header = <<<'EOF'
-This file is part of hyperf/helpers.
+This file is part of huangdijia/laravel-horizon-restart.
 
 @link     https://github.com/huangdijia/laravel-horizon-restart
 @document https://github.com/huangdijia/laravel-horizon-restart/blob/master/README.md

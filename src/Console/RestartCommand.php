@@ -1,5 +1,13 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * This file is part of huangdijia/laravel-horizon-restart.
+ *
+ * @link     https://github.com/huangdijia/laravel-horizon-restart
+ * @document https://github.com/huangdijia/laravel-horizon-restart/blob/master/README.md
+ * @contact  huangdijia@gmail.com
+ */
 namespace Huangdijia\Horizon\Console;
 
 use Huangdijia\Horizon\Jobs\HorizonRestartJob;
@@ -15,21 +23,21 @@ class RestartCommand extends Command
      * @var string
      */
     protected $signature = 'horizon:restart';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Restart the Horizon supervisors';
+
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle()
     {
         $repository = $this->laravel->make(MasterSupervisorRepository::class);
-        $masters    = $repository->all();
+        $masters = $repository->all();
 
         collect($masters)->each(function ($master) {
             $queue = Str::substr($master->name, 0, -5);

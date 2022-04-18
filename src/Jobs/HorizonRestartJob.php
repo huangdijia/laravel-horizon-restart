@@ -1,5 +1,13 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * This file is part of huangdijia/laravel-horizon-restart.
+ *
+ * @link     https://github.com/huangdijia/laravel-horizon-restart
+ * @document https://github.com/huangdijia/laravel-horizon-restart/blob/master/README.md
+ * @contact  huangdijia@gmail.com
+ */
 namespace Huangdijia\Horizon\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -11,7 +19,10 @@ use Illuminate\Support\Facades\Artisan;
 
 class HorizonRestartJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public function handle()
     {
