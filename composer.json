@@ -33,6 +33,9 @@
     },
     "minimum-stability": "dev",
     "extra": {
+        "branch-alias": {
+            "1.x-dev": "1.0-dev"
+        },
         "laravel": {
             "providers": [
                 "Huangdijia\\Horizon\\RestartServiceProvider"
