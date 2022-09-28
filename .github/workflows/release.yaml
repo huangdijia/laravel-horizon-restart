@@ -23,4 +23,3 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-          body: ${{ steps.changelog.outputs.clean_changelog }}
