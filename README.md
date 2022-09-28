@@ -13,7 +13,7 @@ Restart the Horizon supervisors of multiple servers like `php artisan queue:rest
 ## Installation
 
 ```bash
-composer require huangdijia/laravel-horizon-restart
+composer require huangdijia/laravel-horizon-restart:^2.0
 ```
 
 ## Usage
