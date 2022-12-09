@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php-version: ['8.0', '8.1']
+        php-version: ['8.0', '8.1', '8.2']
       max-parallel: 4
     steps:
       - name: Checkout
@@ -23,9 +23,17 @@ jobs:
           coverage: none
       - name: Setup Packages
         run: composer update -o
+      - name: Run Cs Fixer
+        run: |
+          if [ "${{ matrix.php-version }}" = "8.2" ]; then
+            PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix --diff --dry-run --verbose
+          else
+            php vendor/bin/php-cs-fixer fix --diff --dry-run --verbose
+          fi
       - name: Run Analyse
         run: |
-          composer analyse src
+          # composer analyse src
+          php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src
       # - name: Run Test Cases
       #   run: |
       #     composer test
