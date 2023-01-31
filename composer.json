@@ -1,11 +1,10 @@
 {
     "name": "huangdijia/laravel-horizon-restart",
-    "description": "horizon-restart for laravel",
+    "description": "Horizon Restart for Laravel.",
     "type": "library",
     "keywords": [
         "laravel",
-        "migrate",
-        "recreate"
+        "horizon"
     ],
     "homepage": "https://github.com/huangdijia/laravel-horizon-restart",
     "license": "MIT",
@@ -42,7 +41,7 @@
     },
     "minimum-stability": "dev",
     "scripts": {
-        "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
-        "cs-fix": "php-cs-fixer fix $1"
+        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
+        "cs-fix": "@php vendor/bin/php-cs-fixer fix $1"
     }
 }
