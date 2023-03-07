@@ -19,9 +19,7 @@ class RestartServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->registerCommands();
-        }
+        $this->registerCommands();
     }
 
     public function register()
