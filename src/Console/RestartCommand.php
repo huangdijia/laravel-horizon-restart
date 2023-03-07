@@ -45,5 +45,7 @@ class RestartCommand extends Command
 
             $this->info("Server [{$queue}] terminated");
         });
+
+        $this->info('Horizon restarted successfully.');
     }
 }
