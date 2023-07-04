@@ -17,7 +17,7 @@ jobs:
         # exclude:
         #   - php: 8.0
         #     laravel: 10
-      max-parallel: 4
+      max-parallel: 36
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -41,3 +41,42 @@ jobs:
       - name: Run Test Cases
         run: |
           composer test
+      - name: Setup Redis
+        run: |
+          docker run -d -p 6379:6379 redis
+      - name: Setup Laravel App
+        run: |
+          PROJECT_NAME=laravel
+          echo "Creating Laravel Project: ${PROJECT_NAME}"
+          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }}
+          cd ${PROJECT_NAME}
+
+          echo "Installing laravel/horizon"
+          composer require laravel/horizon
+          php artisan horizon:install
+
+          echo "Installing huangdijia/laravel-horizon-restart"
+          composer config minimum-stability dev
+          composer config repositories.laravel-horizon-restart path ../
+          composer require huangdijia/laravel-horizon-restart
+
+          echo "Booting Horizon"
+          php artisan horizon &
+
+          sleep 5
+
+          echo "Checking Horizon"
+          php artisan horizon:status
+
+          echo "Restart Horizon"
+          php artisan horizon:restart
+
+          echo "Checking Horizon"
+          php artisan horizon:status
+
+          sleep 5
+
+          echo "Checking Horizon"
+          php artisan horizon:status
+
+          exit 0
