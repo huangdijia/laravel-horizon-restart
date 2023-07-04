@@ -59,10 +59,10 @@ jobs:
       - name: Checking Horizon(terminated)
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon:status
-          if [ $? -eq 1 ]; then echo "Restarting" fi
+          php artisan horizon:list
           sleep 5
       - name: ReChecking Horizon(running)
         run: |
           cd ${PROJECT_NAME}
           php artisan horizon:status
+          php artisan horizon:list
