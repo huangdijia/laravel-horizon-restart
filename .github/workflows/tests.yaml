@@ -62,6 +62,8 @@ jobs:
           echo "Booting Horizon"
           php artisan horizon &
 
+          sleep 5
+
           echo "Checking Horizon"
           php artisan horizon:status
 
