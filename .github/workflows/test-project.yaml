@@ -1,0 +1,64 @@
+name: test-project
+
+on: [push, pull_request]
+
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
+  PROJECT_NAME: laravel
+
+jobs:
+  ci:
+    name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+    runs-on: "${{ matrix.os }}"
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php: ['8.1', '8.2']
+        laravel: [10]
+      max-parallel: 36
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: redis, pdo, pdo_mysql, bcmath, swoole
+          tools: phpize
+          coverage: none
+      - name: Setup Redis
+        run: |
+          docker run -d -p 6379:6379 redis
+      - name: Setup Laravel Project
+        run: |
+          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }}
+      - name: Install Horizon
+        run: |
+          cd ${PROJECT_NAME}
+          composer require laravel/horizon
+          php artisan horizon:install
+      - name: Install Horizon Restart
+        run: |
+          cd ${PROJECT_NAME}
+          composer config minimum-stability dev
+          composer config repositories.laravel-horizon-restart path ../
+          composer require huangdijia/laravel-horizon-restart
+      - name: Booting Horizon
+        run: |
+          cd ${PROJECT_NAME}
+          php artisan horizon --daemon
+      - name: Checking Horizon
+        run: |
+          php artisan horizon:status
+      - name: Restart Horizon
+        run: |
+          php artisan horizon:restart
+      - name: Checking Horizon
+        run: |
+          php artisan horizon:status
+      - name: Waiting 5 seconds
+        run: |
+          sleep 5
+      - name: ReChecking Horizon
+        run: |
+          php artisan horizon:status
