@@ -56,7 +56,7 @@ jobs:
           php artisan horizon:install
 
           echo "Installing huangdijia/laravel-horizon-restart"
-          composer config set repository.laravel-horizon-restart path ../
+          composer config repositories.laravel-horizon-restart path ../
           composer require huangdijia/laravel-horizon-restart
 
           echo "Booting Horizon"
