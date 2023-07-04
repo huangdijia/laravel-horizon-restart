@@ -46,7 +46,7 @@ jobs:
       - name: Booting Horizon
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon --daemon
+          php artisan horizon -h
       - name: Checking Horizon
         run: |
           php artisan horizon:status
