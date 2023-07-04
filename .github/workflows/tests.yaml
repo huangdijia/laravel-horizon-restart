@@ -38,6 +38,9 @@ jobs:
       - name: Run Analyse
         run: |
           php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src
+      - name: Run Test Cases
+        run: |
+          composer test
       - name: Setup Redis
         run: |
           docker run -d -p 6379:6379 redis
@@ -72,6 +75,3 @@ jobs:
 
           echo "Checking Horizon"
           php artisan horizon:status
-      - name: Run Test Cases
-        run: |
-          composer test
