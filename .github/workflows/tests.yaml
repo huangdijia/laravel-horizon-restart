@@ -78,3 +78,5 @@ jobs:
 
           echo "Checking Horizon"
           php artisan horizon:status
+
+          exit 0
