@@ -38,6 +38,40 @@ jobs:
       - name: Run Analyse
         run: |
           php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src
+      - name: Setup Redis
+        run: |
+          docker run -d -p 6379:6379 redis
+      - name: Setup Laravel App
+        run: |
+          PROJECT_NAME=laravel
+          echo "Creating Laravel Project: ${PROJECT_NAME}"
+          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }}
+          cd ${PROJECT_NAME}
+
+          echo "Installing laravel/horizon"
+          composer require laravel/horizon
+          php artisan horizon:install
+
+          echo "Installing huangdijia/laravel-horizon-restart"
+          composer config set repositories.0 path ../
+          composer require huangdijia/laravel-horizon-restart
+
+          echo "Booting Horizon"
+          php artisan horizon &
+
+          echo "Checking Horizon"
+          php artisan horizon:status
+
+          echo "Restart Horizon"
+          php artisan horizon:restart
+
+          echo "Checking Horizon"
+          php artisan horizon:status
+
+          sleep 5
+
+          echo "Checking Horizon"
+          php artisan horizon:status
       - name: Run Test Cases
         run: |
           composer test
