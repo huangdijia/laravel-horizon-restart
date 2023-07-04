@@ -51,7 +51,7 @@ jobs:
       - name: Checking Horizon(running)
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon:status
+          php artisan horizon:list
       - name: Restart Horizon
         run: |
           cd ${PROJECT_NAME}
@@ -59,10 +59,4 @@ jobs:
       - name: Checking Horizon(terminated)
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon:list
-          sleep 5
-      - name: ReChecking Horizon(running)
-        run: |
-          cd ${PROJECT_NAME}
-          php artisan horizon:status
           php artisan horizon:list
