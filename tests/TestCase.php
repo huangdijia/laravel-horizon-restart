@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @document https://github.com/huangdijia/laravel-horizon-restart/blob/2.x/README.md
  * @contact  huangdijia@gmail.com
  */
+
 namespace Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
