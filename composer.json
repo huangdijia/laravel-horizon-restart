@@ -20,11 +20,11 @@
         "laravel/horizon": "^5.0|^6.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
         "phpstan/phpstan": "^1.0",
         "laravel/framework": "^10.0",
         "pestphp/pest":"^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0"
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "huangdijia/php-coding-standard": "1.2.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +33,7 @@
     },
     "extra": {
         "branch-alias": {
-            "3.x-dev": "3.0-dev"
+            "dev-main": "3.0-dev"
         },
         "laravel": {
             "providers": [
