@@ -24,7 +24,7 @@
         "laravel/framework": "^10.0",
         "pestphp/pest":"^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "huangdijia/php-coding-standard": "1.2.x-dev"
+        "huangdijia/php-coding-standard": "^1.2"
     },
     "autoload": {
         "psr-4": {
