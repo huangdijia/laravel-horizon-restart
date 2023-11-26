@@ -19,7 +19,7 @@ jobs:
         os: [ubuntu-latest]
         php: ['8.3', '8.2', '8.1']
         laravel: [10]
-      max-parallel: 36
+      max-parallel: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
