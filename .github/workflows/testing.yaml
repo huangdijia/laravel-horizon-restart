@@ -63,6 +63,7 @@ jobs:
         run: |
           cd ${PROJECT_NAME}
           php artisan horizon:restart
+          cat /tmp/horizon.log
       - name: Checking Horizon(terminated)
         run: |
           cd ${PROJECT_NAME}
