@@ -53,8 +53,9 @@ jobs:
       - name: Booting Horizon
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon &
+          php artisan horizon >> /tmp/horizon.log &
           sleep 3
+          cat /tmp/horizon.log
       - name: Checking Horizon(running)
         run: |
           cd ${PROJECT_NAME}
@@ -63,7 +64,10 @@ jobs:
         run: |
           cd ${PROJECT_NAME}
           php artisan horizon:restart
+          cat /tmp/horizon.log
       - name: Checking Horizon(terminated)
         run: |
           cd ${PROJECT_NAME}
           php artisan horizon:list
+          cat /tmp/horizon.log
+
