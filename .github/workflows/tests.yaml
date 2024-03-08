@@ -10,7 +10,7 @@ env:
   PHP_CS_FIXER_IGNORE_ENV: 1
 
 jobs:
-  ci:
+  tests:
     name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
     runs-on: "${{ matrix.os }}"
     strategy:

@@ -11,7 +11,7 @@ env:
   PROJECT_NAME: laravel
 
 jobs:
-  ci:
+  testing:
     name: Testing on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
     runs-on: "${{ matrix.os }}"
     strategy:
