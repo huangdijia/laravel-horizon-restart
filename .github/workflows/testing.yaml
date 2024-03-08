@@ -1,4 +1,4 @@
-name: Test for Horizon
+name: testing
 
 on:
   push:
