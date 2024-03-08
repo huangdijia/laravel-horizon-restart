@@ -53,7 +53,7 @@ jobs:
       - name: Booting Horizon
         run: |
           cd ${PROJECT_NAME}
-          php artisan horizon &
+          php artisan horizon >> /tmp/horizon.log &
           sleep 3
       - name: Checking Horizon(running)
         run: |
@@ -67,3 +67,5 @@ jobs:
         run: |
           cd ${PROJECT_NAME}
           php artisan horizon:list
+          cat /tmp/horizon.log
+
