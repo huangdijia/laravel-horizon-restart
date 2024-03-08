@@ -55,6 +55,7 @@ jobs:
           cd ${PROJECT_NAME}
           php artisan horizon >> /tmp/horizon.log &
           sleep 3
+          cat /tmp/horizon.log
       - name: Checking Horizon(running)
         run: |
           cd ${PROJECT_NAME}
