@@ -14,14 +14,14 @@
     }],
     "require": {
         "php": ">=8.1",
-        "illuminate/support": "^10.0",
-        "illuminate/console": "^10.0",
-        "illuminate/bus": "^10.0",
+        "illuminate/support": "^10.0|^11.0",
+        "illuminate/console": "^10.0|^11.0",
+        "illuminate/bus": "^10.0|^11.0",
         "laravel/horizon": "^5.0|^6.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.0",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^10.0|^11.0",
         "pestphp/pest":"^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "huangdijia/php-coding-standard": "^1.2"
