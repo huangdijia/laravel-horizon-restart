@@ -11,23 +11,26 @@ env:
   PROJECT_NAME: laravel
 
 jobs:
-  ci:
-    name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+  testing:
+    name: Testing on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: ['8.3', '8.2', '8.1']
-        laravel: [10]
-      max-parallel: 20
+        php: ['8.1', '8.2', '8.3']
+        laravel: [10, 11]
+        exclude:
+          - php: 8.1
+            laravel: 11
+      max-parallel: 36
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: redis, pdo, pdo_mysql, bcmath, swoole
+          extensions: redis, pdo, pdo_mysql, bcmath
           tools: phpize
           coverage: none
       - name: Setup Redis
@@ -35,7 +38,7 @@ jobs:
           docker run -d -p 6379:6379 redis
       - name: Setup Laravel Project
         run: |
-          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }}
+          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }} --stability=dev
       - name: Install Horizon Component
         run: |
           cd ${PROJECT_NAME}
