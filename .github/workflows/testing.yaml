@@ -38,7 +38,7 @@ jobs:
           docker run -d -p 6379:6379 redis
       - name: Setup Laravel Project
         run: |
-          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }}
+          composer create-project --prefer-dist laravel/laravel ${PROJECT_NAME} ^${{ matrix.laravel }} --stability=dev
       - name: Install Horizon Component
         run: |
           cd ${PROJECT_NAME}
