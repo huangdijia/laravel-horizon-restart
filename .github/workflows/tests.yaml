@@ -12,19 +12,25 @@ env:
 jobs:
   tests:
     name: Test on PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
-    runs-on: "${{ matrix.os }}"
+
+    runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         os: [ubuntu-latest]
         php: ['8.1', '8.2', '8.3']
-        laravel: [10, 11]
+        laravel: [10, 11, '12']
         exclude:
           - php: 8.1
             laravel: 11
+          - laravel: '12'
+            php: '8.1'
       max-parallel: 36
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -32,16 +38,20 @@ jobs:
           extensions: redis, pdo, pdo_mysql, bcmath
           tools: phpize
           coverage: none
+
       - name: Install Dependencies
         run: |
           composer require "laravel/framework:^${{ matrix.laravel }}" --no-update
           composer update --prefer-dist --no-interaction --no-progress
+
       - name: Run Cs Fixer
         run: |
           php vendor/bin/php-cs-fixer fix --diff --dry-run --verbose
+
       - name: Run Analyse
         run: |
           php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src
+
       - name: Run Test Cases
         run: |
           composer test
