@@ -34,9 +34,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-main": "3.0-dev"
-        },
         "laravel": {
             "providers": [
                 "Huangdijia\\Horizon\\RestartServiceProvider"
