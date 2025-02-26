@@ -5,7 +5,7 @@ declare(strict_types=1);
  * This file is part of laravel-horizon-restart.
  *
  * @link     https://github.com/huangdijia/laravel-horizon-restart
- * @document https://github.com/huangdijia/laravel-horizon-restart/blob/2.x/README.md
+ * @document https://github.com/huangdijia/laravel-horizon-restart/blob/main/README.md
  * @contact  huangdijia@gmail.com
  */
 
@@ -37,12 +37,16 @@ class RestartCommand extends Command
      */
     public function handle()
     {
+        /** @var MasterSupervisorRepository $repository */
         $repository = $this->laravel->make(MasterSupervisorRepository::class);
         $masters = $repository->all();
 
-        collect($masters)->each(function ($master) {
+        $env = app('config')['app.env'] ?? 'local';
+        $connection = app('config')['horizon.environments.' . $env . '.supervisor-horizon-restart.connection'] ?? 'redis';
+
+        collect($masters)->each(function ($master) use ($connection) {
             $queue = Str::substr($master->name, 0, -5);
-            HorizonRestartJob::dispatch()->onQueue($queue);
+            HorizonRestartJob::dispatch()->onQueue($queue)->onConnection($connection);
 
             $this->info("Server [{$queue}] terminated");
         });
