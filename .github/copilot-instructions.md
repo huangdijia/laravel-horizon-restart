@@ -112,9 +112,14 @@ This package provides:
 - PHP CS Fixer for code style
 
 ### Composer Scripts Reference
-- `composer cs-fix` - Fix code style with PHP CS Fixer
-- `composer analyse` - Run PHPStan static analysis  
-- `composer test` - Run Pest test suite
+- `composer cs-fix` - Fix code style with PHP CS Fixer (command: `@php vendor/bin/php-cs-fixer fix`)
+- `composer analyse` - Run PHPStan static analysis (command: `@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src`)
+- `composer test` - Run Pest test suite (command: `@php vendor/bin/pest`)
+
+### Basic Validation Without Full Install
+- `composer dump-autoload` - Regenerate autoloader (30 seconds)
+- `php -l <file>` - Syntax check individual PHP files (5 seconds per file)
+- `composer run-script --list` - Show available scripts (5 seconds)
 
 ### Integration Testing Notes
 The package includes comprehensive integration testing that:
